@@ -1,0 +1,509 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "goey-toast/styles.css";
+@import "./loader.css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant standalone (@media (display-mode: standalone));
+@custom-variant native (&:is([data-native-app="true"] *));
+@source "../";
+
+@theme inline {
+  --color-brand: var(--brand);
+  --breakpoint-3xl: 1600px;
+  --breakpoint-4xl: 2000px;
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--brand);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-highlight: var(--code-highlight);
+  --color-code-number: var(--code-number);
+  --kanban-board-circle-primary: var(--primary);
+  --color-kanban-board-circle-yellow: var(--kanban-board-circle-yellow);
+  --color-kanban-board-circle-violet: var(--kanban-board-circle-violet);
+  --color-kanban-board-circle-red: var(--kanban-board-circle-red);
+  --color-kanban-board-circle-purple: var(--kanban-board-circle-purple);
+  --color-kanban-board-circle-pink: var(--kanban-board-circle-pink);
+  --color-kanban-board-circle-indigo: var(--kanban-board-circle-indigo);
+  --color-kanban-board-circle-green: var(--kanban-board-circle-green);
+  --color-kanban-board-circle-gray: var(--kanban-board-circle-gray);
+  --color-kanban-board-circle-cyan: var(--kanban-board-circle-cyan);
+  --color-kanban-board-circle-blue: var(--kanban-board-circle-blue);
+  --color-chart-scale-pattern-color: var(----chart-scale-pattern-color);
+  --color-chart-scale-05: var(----chart-scale-05);
+  --color-chart-scale-04: var(----chart-scale-04);
+  --color-chart-scale-03: var(----chart-scale-03);
+  --color-chart-scale-02: var(----chart-scale-02);
+  --color-chart-scale-01: var(----chart-scale-01);
+  --color-chart-label: var(----chart-label);
+  --color-chart-marker-foreground: var(----chart-marker-foreground);
+  --color-chart-marker-border: var(----chart-marker-border);
+  --color-chart-marker-background: var(----chart-marker-background);
+  --color-chart-tooltip-muted: var(----chart-tooltip-muted);
+  --color-chart-tooltip-foreground: var(----chart-tooltip-foreground);
+  --color-chart-tooltip-background: var(----chart-tooltip-background);
+  --chart-brush-border: var(----chart-brush-border);
+  --color-chart-grid: var(----chart-grid);
+  --color-chart-crosshair: var(----chart-crosshair);
+  --chart-line-secondary: var(----chart-line-secondary);
+  --chart-line-primary: var(----chart-line-primary);
+  --color-chart-foreground-muted: var(----chart-foreground-muted);
+  --color-chart-foreground: var(----chart-foreground);
+  --color-chart-background: var(----chart-background);
+  --animate-skeleton: skeleton 2s -1s infinite linear;
+  @keyframes skeleton {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+:root {
+  --brand: #f4511e;
+  --app-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --icon-swap-dur: 250ms;
+  --icon-swap-blur: 2px;
+  --icon-swap-start-scale: 0.25;
+  --icon-swap-ease: ease-in-out;
+  --success: oklch(0.72 0.16 145);
+  --success-foreground: oklch(0.98 0 0);
+
+  --warning: oklch(0.82 0.18 75);
+  --warning-foreground: oklch(0.22 0 0);
+
+  --info: oklch(0.68 0.12 245);
+  --info-foreground: oklch(0.98 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(62.04% 0.195 253.83);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --kanban-board-circle-blue: oklch(0.6232 0.1879 259.8);
+  --kanban-board-circle-cyan: oklch(0.7146 0.1256 215.13);
+  --kanban-board-circle-gray: oklch(0.5513 0.0233 264.36);
+  --kanban-board-circle-green: oklch(0.7229 0.1921 149.58);
+  --kanban-board-circle-indigo: oklch(0.586 0.2037 277.12);
+  --kanban-board-circle-pink: oklch(0.6559 0.2117 354.34);
+  --kanban-board-circle-purple: oklch(0.6267 0.2325 303.86);
+  --kanban-board-circle-red: oklch(0.6368 0.2078 25.33);
+  --kanban-board-circle-violet: oklch(0.6059 0.2187 292.72);
+  --kanban-board-circle-yellow: oklch(0.7959 0.1618 86.05);
+  --chart-background: oklch(1 0 0);
+  --chart-foreground: oklch(0.145 0.004 285);
+  --chart-foreground-muted: oklch(0.55 0.014 260);
+  --chart-line-primary: var(--chart-1);
+  --chart-line-secondary: var(--chart-2);
+  --chart-crosshair: oklch(0.4 0.1828 274.34);
+  --chart-grid: oklch(0.9 0 0);
+  --chart-brush-border: var(--chart-grid);
+  --chart-tooltip-background: oklch(0.21 0.006 285 / 0.8);
+  --chart-tooltip-foreground: oklch(0.985 0 0);
+  --chart-tooltip-muted: oklch(0.65 0.01 260);
+  --chart-marker-background: oklch(0.97 0.005 260);
+  --chart-marker-border: oklch(0.85 0.01 260);
+  --chart-marker-foreground: oklch(0.3 0.01 260);
+  --chart-label: oklch(0.45 0.01 260);
+  --chart-scale-01: oklch(0.98 0.003 106);
+  --chart-scale-02: oklch(0.92 0.008 106);
+  --chart-scale-03: oklch(0.82 0.015 106);
+  --chart-scale-04: oklch(0.68 0.02 106);
+  --chart-scale-05: oklch(0.55 0.025 106);
+  --chart-scale-pattern-color: oklch(0.96 0.005 106);
+}
+
+.t-icon-swap {
+  position: relative;
+  display: inline-grid;
+}
+
+.t-icon-swap .t-icon {
+  grid-area: 1 / 1;
+  transition:
+    opacity var(--icon-swap-dur) var(--icon-swap-ease),
+    filter var(--icon-swap-dur) var(--icon-swap-ease),
+    transform var(--icon-swap-dur) var(--icon-swap-ease);
+  will-change: opacity, filter, transform;
+}
+
+.t-icon-swap[data-state="a"] .t-icon[data-icon="a"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="b"] {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.t-icon-swap[data-state="a"] .t-icon[data-icon="b"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="a"] {
+  opacity: 0;
+  filter: blur(var(--icon-swap-blur));
+  transform: scale(var(--icon-swap-start-scale));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-icon-swap .t-icon {
+    transition: none !important;
+  }
+}
+
+.dark {
+  --brand: #ff7a00;
+  --success: oklch(0.68 0.15 145);
+  --success-foreground: oklch(0.98 0 0);
+
+  --warning: oklch(0.74 0.16 75);
+  --warning-foreground: oklch(0.12 0 0);
+
+  --info: oklch(0.72 0.11 245);
+  --info-foreground: oklch(0.98 0 0);
+
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(62.04% 0.195 253.83);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --kanban-board-circle-blue: oklch(0.7135 0.1435 254.61);
+  --kanban-board-circle-cyan: oklch(0.7973 0.1339 211.45);
+  --kanban-board-circle-gray: oklch(0.7137 0.0192 261.33);
+  --kanban-board-circle-green: oklch(0.8003 0.1823 151.7);
+  --kanban-board-circle-indigo: oklch(0.6797 0.1586 276.96);
+  --kanban-board-circle-pink: oklch(0.7253 0.1752 349.74);
+  --kanban-board-circle-purple: oklch(0.7218 0.1766 305.51);
+  --kanban-board-circle-red: oklch(0.7108 0.166 22.21);
+  --kanban-board-circle-violet: oklch(0.7093 0.1589 293.52);
+  --kanban-board-circle-yellow: oklch(0.8601 0.173 91.84);
+  --chart-background: oklch(0.145 0 0);
+  --chart-foreground: oklch(0.45 0 0);
+  --chart-foreground-muted: oklch(0.65 0.01 260);
+  --chart-crosshair: oklch(0.45 0 0);
+  --chart-grid: oklch(0.25 0 0);
+  --chart-brush-border: var(--chart-grid);
+  --chart-marker-background: oklch(0.25 0.01 260);
+  --chart-marker-border: oklch(0.4 0.01 260);
+  --chart-marker-foreground: oklch(0.9 0 0);
+  --chart-label: oklch(0.75 0.01 260);
+  --chart-scale-01: oklch(0.28 0.03 270);
+  --chart-scale-02: oklch(0.38 0.04 270);
+  --chart-scale-03: oklch(0.48 0.05 270);
+  --chart-scale-04: oklch(0.58 0.06 270);
+  --chart-scale-05: oklch(0.68 0.07 270);
+  --chart-scale-pattern-color: oklch(0.145 0 0);
+}
+
+@media (display-mode: standalone) {
+  :root {
+    --app-safe-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+html[data-native-app="true"] {
+  --app-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
+
+/* iOS apps running on macOS expose the title-bar inset as a safe area even
+ * though the web view already starts below the window chrome. */
+html[data-native-app="true"][data-native-device="mac"] {
+  --app-safe-top: 0px;
+}
+
+@layer base {
+  html {
+    background-color: var(--background);
+    scroll-padding-top: var(--header-height);
+  }
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply overscroll-y-none;
+  }
+  body {
+    min-height: 100dvh;
+    position: relative;
+    background-color: var(--background);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    @apply bg-background text-foreground;
+  }
+  [data-slot="layout"] {
+    @apply overscroll-none;
+  }
+
+  @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+    [data-wrapper] {
+      @apply min-[1800px]:border-t;
+    }
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+  :root {
+    --color-kanban-board-circle-blue: var(--kanban-board-circle-blue);
+    --color-kanban-board-circle-cyan: var(--kanban-board-circle-cyan);
+    --color-kanban-board-circle-gray: var(--kanban-board-circle-gray);
+    --color-kanban-board-circle-green: var(--kanban-board-circle-green);
+    --color-kanban-board-circle-indigo: var(--kanban-board-circle-indigo);
+    --color-kanban-board-circle-pink: var(--kanban-board-circle-pink);
+    --color-kanban-board-circle-primary: var(--kanban-board-circle-primary);
+    --color-kanban-board-circle-purple: var(--kanban-board-circle-purple);
+    --color-kanban-board-circle-red: var(--kanban-board-circle-red);
+    --color-kanban-board-circle-violet: var(--kanban-board-circle-violet);
+    --color-kanban-board-circle-yellow: var(--kanban-board-circle-yellow);
+  }
+}
+
+/* Autofill - keep the values but remove Chrome/Safari styling */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: currentColor;
+  caret-color: currentColor;
+
+  /* Light mode: transparent like your Input */
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  box-shadow: 0 0 0 1000px transparent inset;
+
+  transition: background-color 999999s ease-in-out 0s;
+}
+
+/* Dark mode: match dark:bg-input/30 */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill,
+.dark textarea:-webkit-autofill:focus,
+.dark select:-webkit-autofill,
+.dark select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px hsl(var(--input) / 0.3) inset;
+  box-shadow: 0 0 0 1000px hsl(var(--input) / 0.3) inset;
+}
+input:autofill,
+textarea:autofill,
+select:autofill,
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: currentColor;
+  caret-color: currentColor;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+}
+
+.tabs__tab,
+.tabs__tab:focus,
+.tabs__tab:focus-visible,
+.tabs__tab[data-focus-visible="true"] {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/*
+ * Keep tab indicator slide motion when next-themes disableTransitionOnChange
+ * injects `* { transition: none !important }` during theme class flips.
+ * Only translate/size are preserved — colors still snap with the theme.
+ */
+.tabs__indicator {
+  transition-duration: 250ms !important;
+  transition-property: translate, width, height !important;
+  transition-timing-function: var(--ease-out-fluid) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs__indicator {
+    transition: none !important;
+  }
+}
+
+@utility mobile {
+  @apply lg:hidden;
+}
+
+@utility desktop {
+  @apply hidden lg:block;
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility border-ghost {
+  @apply relative after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten;
+}
+
+@layer components {
+  .dialog-ring {
+    @apply rounded-xl border-none bg-clip-padding shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800;
+  }
+}
+
+@utility app-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  flex-grow: 1;
+
+  @media (width >= 96rem) {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@utility app-section {
+  padding-block: 0.5rem;
+  & > :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  @apply px-2;
+}
+
+@layer utilities {
+  :where(
+      a,
+      button,
+      input,
+      textarea,
+      select,
+      summary,
+      [role="button"],
+      [tabindex]:not([tabindex="-1"])
+    ):not([data-slot="input-group-control"]):not([data-no-ring]):focus-visible {
+    @apply ring-1 outline-none;
+  }
+
+  [data-slot="input-group"]:not([data-no-ring]):has(
+      [data-slot="input-group-control"]:focus-visible
+    ) {
+    @apply border-input! ring-1! ring-brand! outline-none!;
+  }
+
+  /* Completely disable focus ring */
+  [data-no-ring]:focus,
+  [data-no-ring]:focus-visible {
+    @apply border-input! ring-0! ring-offset-0! outline-none!;
+  }
+
+  /* Disable ring for compound components like InputGroup */
+  [data-slot="input-group"][data-no-ring]:has(
+      [data-slot="input-group-control"]:focus-visible
+    ) {
+    @apply border-input! ring-0! ring-offset-0! outline-none!;
+  }
+}
