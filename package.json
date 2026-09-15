@@ -1,107 +1,19 @@
 {
-  "name": "@rock.star/ui",
-  "version": "1.0.0",
-  "description": "Rockstar shared React UI components, icons, hooks, utilities, and styles.",
+  "name": "rockstar-ui-monorepo",
+  "private": true,
   "type": "module",
-  "private": false,
-  "sideEffects": false,
-  "imports": {
-    "#components/*": "./src/ui/*.tsx",
-    "#hooks/*": "./src/hooks/*.ts",
-    "#lib/*": "./src/lib/*.ts"
-  },
-  "files": [
-    "dist"
+  "packageManager": "bun@1.4.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/ui/index.d.ts",
-      "import": "./dist/ui/index.js"
-    },
-    "./icon": {
-      "types": "./dist/icon/index.d.ts",
-      "import": "./dist/icon/index.js"
-    },
-    "./hooks": {
-      "types": "./dist/hooks/index.d.ts",
-      "import": "./dist/hooks/index.js"
-    },
-    "./lib": {
-      "types": "./dist/lib/index.d.ts",
-      "import": "./dist/lib/index.js"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js"
-    },
-    "./styles.css": "./dist/styles.css",
-    "./package.json": "./package.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rockstar-bio/ui.git"
-  },
-  "homepage": "https://github.com/rockstar-bio/ui#readme",
-  "bugs": {
-    "url": "https://github.com/rockstar-bio/ui/issues"
-  },
-  "license": "MIT",
   "scripts": {
-    "build": "tsup",
+    "dev": "bun run --cwd apps/docs dev",
+    "build:ui": "bun run --cwd packages/ui build",
+    "build:docs": "bun run --cwd apps/docs build",
+    "build": "bun run build:ui && bun run build:docs && rm -rf out && cp -R apps/docs/out out",
+    "typecheck": "bun run build:ui && bun run --cwd packages/ui typecheck && bun run --cwd apps/docs typecheck",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
-  },
-  "peerDependencies": {
-    "next": "^16.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "dependencies": {
-    "@base-ui/react": "^1.6.0",
-    "@gravity-ui/icons": "^2.3.0",
-    "@number-flow/react": "^0.6.2",
-    "@radix-ui/react-collapsible": "^1.1.20",
-    "@radix-ui/react-scroll-area": "^1.2.18",
-    "@radix-ui/react-select": "^2.3.7",
-    "@shadcn/react": "^0.3.0",
-    "@visx/curve": "4.0.1-alpha.0",
-    "@visx/event": "4.0.1-alpha.0",
-    "@visx/gradient": "4.0.1-alpha.0",
-    "@visx/grid": "4.0.1-alpha.0",
-    "@visx/responsive": "4.0.1-alpha.0",
-    "@visx/scale": "4.0.1-alpha.0",
-    "@visx/shape": "4.0.1-alpha.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "^1.1.1",
-    "d3-array": "^3.2.4",
-    "d3-shape": "^3.2.0",
-    "embla-carousel-react": "^8.6.0",
-    "feral-blob": "^0.2.0",
-    "goey-toast": "^0.5.0",
-    "input-otp": "^1.4.2",
-    "lucide-react": "^1.27.0",
-    "motion": "^12.42.2",
-    "next-themes": "^0.4.6",
-    "nuqs": "^2.9.4",
-    "openai": "^7.4.0",
-    "qrcode": "^1.5.4",
-    "recharts": "^3.8.0",
-    "sonner": "^2.0.7",
-    "tailwind-merge": "^3.6.0",
-    "tw-animate-css": "^1.4.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.19.43",
-    "@types/qrcode": "^1.5.6",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "next": "^16.0.0",
-    "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^4",
-    "tsup": "^8.5.0",
-    "typescript": "^5"
+    "format:check": "prettier --check ."
   }
 }
