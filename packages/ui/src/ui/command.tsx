@@ -1,6 +1,6 @@
 "use client"
 
-import { Command as CommandPrimitive } from "cmdk"
+import { Command as CommandPrimitive, useCommandState } from "cmdk"
 import * as React from "react"
 
 import { cn } from "cn"
@@ -210,4 +210,5 @@ export {
   CommandList,
   CommandSeparator,
   CommandShortcut,
+  useCommandState
 }
