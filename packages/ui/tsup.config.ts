@@ -16,5 +16,6 @@ export default defineConfig({
   splitting: false,
   outDir: "dist",
   external: ["react", "react-dom"],
-  onSuccess: "cp src/styles/globals.css dist/styles.css",
+  onSuccess:
+    "cp src/styles/globals.css dist/styles.css && cp src/styles/loader.css dist/loader.css",
 })
