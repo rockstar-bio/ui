@@ -50,7 +50,7 @@ export const SPRING_MOUSE = {
   mass: 0.3,
 } as const
 
-export function cn(...inputs: ClassValue[]) {
+function otpCn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
@@ -249,7 +249,7 @@ export function OTPInput({
       : hint
 
   return (
-    <div className={cn("inline-flex flex-col gap-2", className)}>
+    <div className={otpCn("inline-flex flex-col gap-2", className)}>
       {label ? (
         <label
           htmlFor={`${uid}-input`}
@@ -309,7 +309,7 @@ export function OTPInput({
                   data-otp-slot
                   data-active={isActive}
                   data-filled={char !== ""}
-                  className={cn(
+                  className={otpCn(
                     "relative grid size-11 place-items-center overflow-hidden rounded-xl border bg-card text-xl font-semibold tabular-nums transition-colors duration-200",
                     showSuccess
                       ? "border-emerald-500/60 text-foreground"
@@ -338,7 +338,7 @@ export function OTPInput({
                               ease: "linear",
                             }
                       }
-                      className={cn(
+                      className={otpCn(
                         "bg-brand pointer-events-none absolute top-1/2 h-6 w-px -translate-y-1/2",
                         char ? "right-3" : "left-1/2 -translate-x-1/2"
                       )}
@@ -501,7 +501,7 @@ export function OTPInput({
       {message ? (
         <p
           aria-live="polite"
-          className={cn(
+          className={otpCn(
             "text-sm",
             showSuccess
               ? "text-emerald-500"

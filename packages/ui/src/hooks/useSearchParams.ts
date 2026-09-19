@@ -277,5 +277,10 @@ export function useSearchParams() {
     isQueryPending: isPending,
     isCategoryPending: isPending,
     isUserPending: isPending,
+    setTab: (value: string) =>
+      updateParams(
+        { tab: value },
+        { history: "replace", shallow: false, scroll: false }
+      ),
   }
 }

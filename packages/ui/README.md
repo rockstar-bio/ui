@@ -12,9 +12,9 @@ bun add @rock.star/ui
 
 ```tsx
 import { Button } from "@rock.star/ui"
-import { Loader } from "@rock.star/ui/icon"
-import { useMounted } from "@rock.star/ui/hooks"
-import { cn } from "@rock.star/ui/lib"
+import { Loader } from "@rock.star/ui"
+import { useMounted } from "@rock.star/ui"
+import { cn } from "@rock.star/ui"
 import "@rock.star/ui/styles.css"
 ```
 

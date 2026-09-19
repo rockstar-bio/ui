@@ -92,6 +92,7 @@ function CommandInput({
         <Magnifier />
       </InputGroupAddon>
       <CommandPrimitive.Input
+        data-no-ring
         data-slot="command-input"
         className="w-full outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
         {...props}

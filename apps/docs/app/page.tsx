@@ -2,8 +2,7 @@ import { ComponentDemo } from "./components/demo"
 
 const install = "bun add @rock.star/ui"
 const usage = `import { Button } from "@rock.star/ui"
-import { Loader } from "@rock.star/ui/icon"
-import { useMounted } from "@rock.star/ui/hooks"
+import { Loader, useMounted } from "@rock.star/ui"
 import "@rock.star/ui/styles.css"`
 
 export default function Home() {

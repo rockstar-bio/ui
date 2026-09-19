@@ -26,6 +26,7 @@ const parseAsFlag = createParser<boolean>({
 })
 
 export const searchParams = {
+  tab: parseAsString.withDefault(""),
   query: parseAsString.withDefault(""),
   category: parseAsString.withDefault(""),
   productStatus: parseAsStringLiteral([
@@ -42,6 +43,7 @@ export const searchParams = {
 }
 
 export const searchParamKeys = {
+  tab: "tab",
   query: "q",
   category: "c",
   productStatus: "status",

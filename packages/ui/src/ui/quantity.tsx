@@ -4,9 +4,10 @@ import { Minus, Plus } from "@gravity-ui/icons"
 import * as React from "react"
 import { buttonVariants } from "./button"
 
-export function QuantityInput({
-  ...props
-}: React.ComponentProps<typeof NumberField.Root>) {
+export const QuantityInput = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentPropsWithoutRef<typeof NumberField.Root>
+>(function QuantityInput({ ...props }, ref) {
   const id = React.useId()
   return (
     <NumberField.Root id={id} {...props} className="flex flex-col items-start">
@@ -21,6 +22,7 @@ export function QuantityInput({
           <Minus />
         </NumberField.Decrement>
         <NumberField.Input
+          ref={ref}
           className="h-7 w-16 rounded-md border px-1 text-center"
           data-no-ring
         />
@@ -36,4 +38,4 @@ export function QuantityInput({
       </NumberField.Group>
     </NumberField.Root>
   )
-}
+})
