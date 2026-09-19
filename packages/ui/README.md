@@ -1,21 +1,33 @@
-# @rock.star/ui
+# rockin
 
 Shared React UI for Rockstar projects.
 
 ## Install
 
 ```bash
-bun add @rock.star/ui
+bun add rockin
 ```
 
 ## Usage
 
 ```tsx
-import { Button } from "@rock.star/ui"
-import { Loader } from "@rock.star/ui"
-import { useMounted } from "@rock.star/ui"
-import { cn } from "@rock.star/ui"
-import "@rock.star/ui/styles.css"
+import { Button } from "rockin/ui"
+import { Loader } from "rockin/icon"
+import { useMounted } from "rockin/hooks"
+import { cn } from "rockin/lib"
+import "rockin/styles.css"
+```
+
+Focused entry points are also available:
+
+```tsx
+import { Button } from "rockin/ui"
+import { useMounted } from "rockin/hooks"
+import { cn } from "rockin/lib"
+import { OpenAI } from "rockin/utils"
+import { Loader } from "rockin/icon"
+import * as Lucide from "rockin/lucide"
+import * as Gravity from "rockin/gravity"
 ```
 
 ## Development

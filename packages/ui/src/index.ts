@@ -1,11 +1,6 @@
-"use client"
-
-export * from "./ui"
 export * from "./icon"
-export * from "./hooks"
-export * from "./lib"
-export { cn } from "cn"
-export *  from "@number-flow/react"
+export * from "cn"
+export { default as NumberFlow } from "@number-flow/react"
 export *  from "goey-toast"
 export *  from "motion/react"
 export *  from "next-themes"

@@ -1,4 +1,4 @@
-name: Publish @rock.star/ui
+name: Publish rockin
 
 on:
   push:
@@ -61,5 +61,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add packages/ui/package.json
-          git commit -m "chore: release rock.star/ui@$VERSION [skip ci]"
+          git commit -m "chore: release rockin@$VERSION [skip ci]"
           git push

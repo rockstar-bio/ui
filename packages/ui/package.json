@@ -1,6 +1,6 @@
 {
-  "name": "@rock.star/ui",
-  "version": "1.1.11",
+  "name": "rockin",
+  "version": "0.0.1",
   "description": "Shared React UI components, icons, hooks, utilities, and styles.",
   "type": "module",
   "private": false,
@@ -29,6 +29,10 @@
     "./gravity": {
       "types": "./dist/gravity.d.ts",
       "import": "./dist/gravity.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
     },
     "./icon": {
       "types": "./dist/icon/index.d.ts",

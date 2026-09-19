@@ -1,9 +1,10 @@
 import { ComponentDemo } from "./components/demo"
 
-const install = "bun add @rock.star/ui"
-const usage = `import { Button } from "@rock.star/ui"
-import { Loader, useMounted } from "@rock.star/ui"
-import "@rock.star/ui/styles.css"`
+const install = "bun add rockin"
+const usage = `import { Button } from "rockin/ui"
+import { Loader } from "rockin/icon"
+import { useMounted } from "rockin/hooks"
+import "rockin/styles.css"`
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
 
         <article className="min-w-0 max-w-4xl">
           <div className="mb-16 max-w-3xl">
-            <p className="mb-4 font-mono text-sm text-brand">@rock.star/ui</p>
+            <p className="mb-4 font-mono text-sm text-brand">rockin</p>
             <h1 className="max-w-2xl text-4xl font-semibold tracking-[-0.04em] text-balance sm:text-6xl">Build once. Keep every Rockstar product familiar.</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">A practical React UI layer with accessible primitives, motion-ready components, icons, hooks, and shared theme styles.</p>
           </div>

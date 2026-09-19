@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input } from "@rock.star/ui"
+import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Input } from "rockin/ui"
 
 export function ComponentDemo() {
   const [count, setCount] = useState(0)
