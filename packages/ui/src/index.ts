@@ -1,5 +1,4 @@
 export * from "./icon"
-export * from "cn"
 export { default as NumberFlow } from "@number-flow/react"
 export *  from "goey-toast"
 export *  from "motion/react"
