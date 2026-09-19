@@ -1,3 +1,5 @@
+"use client"
+
 export * from "./ui"
 export * from "./icon"
 export * from "./hooks"
