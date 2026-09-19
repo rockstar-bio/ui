@@ -38,6 +38,10 @@
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js"
     },
+    "./utils/parms-client": {
+      "types": "./dist/utils/parms-client.d.ts",
+      "import": "./dist/utils/parms-client.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
