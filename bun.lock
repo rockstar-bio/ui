@@ -6,7 +6,7 @@
           "name": "@rock.star/ui",
     },
     "apps/docs": {
-      "name": "@rockstar-bio/ui-docs",
+      "name": "ui-docs",
       "version": "0.1.0",
       "dependencies": {
         "@rock.star/ui": "workspace:*",
@@ -400,7 +400,7 @@
 
     "@rock.star/ui": ["@rock.star/ui@workspace:packages/ui"],
 
-    "@rockstar-bio/ui-docs": ["@rockstar-bio/ui-docs@workspace:apps/docs"],
+    "@ui-docs": ["@ui-docs@workspace:apps/docs"],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.63.4", "", { "os": "android", "cpu": "arm" }, "sha512-I+BSHzTAhKN2n7ZwGZsegGcZjDpLqFOMAtJz/u6uFGe0pUFbq56dEHjqJV/ZUdRJtNXNxA+hREUatZBvMR3Oiw=="],
 
