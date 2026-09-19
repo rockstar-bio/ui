@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import QRCodeLib from "qrcode";
-import { cn } from "#lib/utils";
+import { cn } from "cn";
 
 interface QRCodeProps extends React.SVGProps<SVGSVGElement> {
   value: string;

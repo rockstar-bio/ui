@@ -1,5 +1,5 @@
 export * from "./ui"
 export * from "./icon"
 export * from "./hooks"
-export { cn } from "./lib/utils"
-export * from "./utils"
+export * from "./lib"
+export { cn } from "cn"

@@ -2,7 +2,7 @@
 
 import NextImage, { type ImageProps as NextImageProps } from "next/image"
 import { type ReactNode, useCallback, useState } from "react"
-import { cn } from "../lib"
+import { cn } from "cn"
 import { JellyMini, Skeleton } from "./"
 
 export type ImageProps = Omit<

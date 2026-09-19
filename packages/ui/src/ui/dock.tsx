@@ -1,5 +1,5 @@
 "use client"
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { LucideIcon } from "lucide-react"
 import { motion } from "motion/react"
 import * as React from "react"

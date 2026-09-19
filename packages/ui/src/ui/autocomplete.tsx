@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete"
 import { ChevronsExpandVertical, Xmark } from "@gravity-ui/icons"
 import type React from "react"

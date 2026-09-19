@@ -3,7 +3,7 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import * as React from "react"
 
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { Check, ChevronDown, Xmark } from "@gravity-ui/icons"
 import { Button } from "./button"
 import {

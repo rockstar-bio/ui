@@ -42,7 +42,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { useComposedRefs } from "#lib/compose-refs";
-import { cn } from "#lib/utils";
+import { cn } from "cn";
 import { useIsomorphicLayoutEffect } from "#hooks/use-isomorphic-layout-effect";
 
 const orientationConfig = {

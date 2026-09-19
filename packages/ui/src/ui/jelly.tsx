@@ -8,7 +8,6 @@ import {
 } from "feral-blob"
 import * as React from "react"
 
-import { cn } from "../lib"
 import { Button } from "./button"
 import {
   Empty,
@@ -17,6 +16,7 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from "./empty"
+import { cn } from "cn"
 
 export {
   BlobSpeech,

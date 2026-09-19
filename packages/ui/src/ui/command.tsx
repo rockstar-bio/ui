@@ -3,7 +3,7 @@
 import { Command as CommandPrimitive } from "cmdk"
 import * as React from "react"
 
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { Magnifier } from "@gravity-ui/icons"
 import {
   Dialog,

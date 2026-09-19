@@ -40,7 +40,7 @@ import {
 import { Kbd } from "#components/kbd"
 import { ScrollArea } from "#components/scroll-area"
 import { Tooltip, TooltipContent, TooltipTrigger } from "#components/tooltip"
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { AlertCircleIcon, CheckIcon, PlusIcon, XIcon } from "lucide-react"
 
 // i18n Configuration Interface

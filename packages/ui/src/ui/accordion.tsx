@@ -1,7 +1,7 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import type * as React from "react"
 
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import { ChevronDown, ChevronUp } from "@gravity-ui/icons"
 
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {

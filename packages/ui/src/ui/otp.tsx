@@ -1,6 +1,6 @@
 "use client"
 
-import { clsx, type ClassValue } from "clsx"
+import { cn } from "cn"
 import {
   AnimatePresence,
   animate,
@@ -8,7 +8,6 @@ import {
   useReducedMotion,
 } from "motion/react"
 import { Fragment, useEffect, useId, useRef, useState } from "react"
-import { twMerge } from "tailwind-merge"
 
 export const EASE_OUT = [0.16, 1, 0.3, 1] as const
 export const EASE_IN_OUT = [0.77, 0, 0.175, 1] as const
@@ -49,10 +48,6 @@ export const SPRING_MOUSE = {
   damping: 15,
   mass: 0.3,
 } as const
-
-function otpCn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
 
 export type OTPStatus = "idle" | "error" | "success"
 
@@ -249,7 +244,7 @@ export function OTPInput({
       : hint
 
   return (
-    <div className={otpCn("inline-flex flex-col gap-2", className)}>
+    <div className={cn("inline-flex flex-col gap-2", className)}>
       {label ? (
         <label
           htmlFor={`${uid}-input`}
@@ -309,7 +304,7 @@ export function OTPInput({
                   data-otp-slot
                   data-active={isActive}
                   data-filled={char !== ""}
-                  className={otpCn(
+                  className={cn(
                     "relative grid size-11 place-items-center overflow-hidden rounded-xl border bg-card text-xl font-semibold tabular-nums transition-colors duration-200",
                     showSuccess
                       ? "border-emerald-500/60 text-foreground"
@@ -338,7 +333,7 @@ export function OTPInput({
                               ease: "linear",
                             }
                       }
-                      className={otpCn(
+                      className={cn(
                         "bg-brand pointer-events-none absolute top-1/2 h-6 w-px -translate-y-1/2",
                         char ? "right-3" : "left-1/2 -translate-x-1/2"
                       )}
@@ -501,7 +496,7 @@ export function OTPInput({
       {message ? (
         <p
           aria-live="polite"
-          className={otpCn(
+          className={cn(
             "text-sm",
             showSuccess
               ? "text-emerald-500"

@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "#lib/utils"
+import { cn } from "cn"
 import type { TargetAndTransition } from "motion/react"
 import { motion } from "motion/react"
 import type { ComponentProps } from "react"
