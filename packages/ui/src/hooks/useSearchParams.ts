@@ -18,7 +18,7 @@ import {
   hasFlagSearchParam,
   searchParamKeys,
   searchParams,
-} from "../lib/parms"
+} from "../utils/parms"
 
 export { NuqsAdapter }
 

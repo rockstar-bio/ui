@@ -2,7 +2,7 @@ import { OpenAI as AI } from "openai"
 
 let client: AI | undefined
 
-export function getOpenAI() {
+export function OpenAI() {
   const apiKey = process.env.OPENAI_API_KEY
 
   if (!apiKey) {
