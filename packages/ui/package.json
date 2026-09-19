@@ -1,6 +1,6 @@
 {
   "name": "@rock.star/ui",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Rockstar shared React UI components, icons, hooks, utilities, and styles.",
   "type": "module",
   "private": false,
