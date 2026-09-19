@@ -3,6 +3,7 @@ import { defineConfig } from "tsup"
 export default defineConfig({
   entry: {
     index: "src/index.ts",
+    cn: "src/cn.ts",
     lucide: "src/lucide.ts",
     gravity: "src/gravity.ts",
     "ui/index": "src/ui/index.ts",

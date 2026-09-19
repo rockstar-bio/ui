@@ -1,5 +1,5 @@
 "use client"
-import { useMounted } from "#hooks/index"
+import { useMounted } from "#hooks/useMounted"
 import {
   BlobSpeech,
   JellyBlobMascot,
