@@ -26,6 +26,7 @@
     "rockin": "workspace:*"
   },
   "devDependencies": {
+    "@types/mdx": "^2.0.14",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",

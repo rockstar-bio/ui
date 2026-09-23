@@ -22,6 +22,7 @@
       },
       "devDependencies": {
         "@tailwindcss/postcss": "^4.3.3",
+        "@types/mdx": "^2.0.14",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -32,7 +33,7 @@
     },
     "packages/ui": {
       "name": "rockin",
-      "version": "0.0.9",
+      "version": "0.0.10",
       "dependencies": {
         "@ariakit/react": "^0.4.40",
         "@base-ui/react": "^1.6.0",
