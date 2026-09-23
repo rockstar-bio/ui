@@ -9,12 +9,12 @@ type TopLoaderProps = {
 
 export function TopLoader({
   children,
-  height = '4px',
+  height,
 }: TopLoaderProps) {
   return (
     <ProgressProvider
       height={height}
-      color="var(--navigation-progress-color, var(--primary))"
+      color="var(--jelly-body-mid)"
       options={{ showSpinner: false }}
       shallowRouting
     >
