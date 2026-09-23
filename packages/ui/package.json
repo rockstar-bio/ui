@@ -1,6 +1,6 @@
 {
   "name": "rockin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Shared React UI components, icons, hooks, utilities, and styles.",
   "type": "module",
   "private": false,
