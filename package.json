@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun run --cwd apps/docs dev",
+    "dev": "bun run build:ui && bun run --cwd apps/docs dev",
     "build:ui": "bun run --cwd packages/ui build",
     "build:docs": "bun run --cwd apps/docs build",
     "build": "bun run build:ui && bun run build:docs && rm -rf out && cp -R apps/docs/out out",

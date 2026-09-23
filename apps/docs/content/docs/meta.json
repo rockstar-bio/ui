@@ -1,0 +1,13 @@
+{
+  "title": "rockin",
+  "root": true,
+  "pages": [
+    "index",
+    "getting-started",
+    "components",
+    "hooks",
+    "lib",
+    "cn",
+    "icons"
+  ]
+}

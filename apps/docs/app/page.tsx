@@ -1,76 +1,57 @@
-import { ComponentDemo } from "./components/demo"
+import Link from "next/link"
+import { ArrowRight, ExternalLink, Sparkles } from "lucide-react"
+import { ThemeSwitch } from "fumadocs-ui/layouts/shared/slots/theme-switch"
 
-const install = "bun add rockin"
-const usage = `import { Button } from "rockin/ui"
-import { Loader } from "rockin/icon"
-import { useMounted } from "rockin/hooks"
-import "rockin/styles.css"`
+import { AccentPicker } from "@/components/accent"
+import { CopyCommand } from "@/components/home/copy-command"
+import { ShowcaseGrid } from "@/components/home/showcase"
+import { GitHubIcon } from "@/components/icons"
+
+function Logo({ compact = false }: { compact?: boolean }) {
+  return (
+    <span className="inline-flex items-center gap-2 font-semibold tracking-tight text-fd-foreground">
+      <span className={`${compact ? "size-6 text-[10px]" : "size-7 text-xs"} grid place-items-center rounded-md bg-fd-foreground font-black text-fd-background`}>r.</span>
+      {!compact && "rockin"}
+    </span>
+  )
+}
 
 export default function Home() {
   return (
-    <main className="docs-grid min-h-screen">
-      <header className="border-b border-border/70 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a className="flex items-center gap-3 font-semibold tracking-tight" href="#top">
-            <span className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground">r.</span>
-            rockstar/ui
-          </a>
-          <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-            <a className="hover:text-foreground" href="#install">Install</a>
-            <a className="hover:text-foreground" href="#components">Components</a>
-            <a className="hover:text-foreground" href="https://github.com/rockstar-bio/ui">GitHub</a>
+    <main className="min-h-screen bg-fd-background text-fd-foreground">
+      <header className="sticky top-0 z-40 border-b border-fd-border/70 bg-fd-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Link href="/" aria-label="rockin home"><Logo /></Link>
+          <nav className="hidden items-center gap-1 text-sm text-fd-muted-foreground sm:flex" aria-label="Main navigation">
+            <Link className="rounded-md px-3 py-1.5 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground" href="/docs">Docs</Link>
+            <Link className="rounded-md px-3 py-1.5 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground" href="/docs/components/button">Components</Link>
+            <Link className="rounded-md px-3 py-1.5 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground" href="/docs/icons">Icons</Link>
           </nav>
+          <div className="flex items-center gap-1.5">
+            <AccentPicker triggerClassName="hidden h-8 items-center gap-1.5 rounded-md border border-fd-border bg-fd-secondary/60 px-2.5 text-xs font-medium text-fd-muted-foreground sm:inline-flex" />
+            <a href="https://github.com/rockstar-bio/ui" target="_blank" rel="noreferrer" aria-label="GitHub" className="grid size-8 place-items-center rounded-md text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"><GitHubIcon className="size-4" /></a>
+            <ThemeSwitch className="rounded-md border border-fd-border bg-fd-secondary/60 px-1.5" />
+          </div>
         </div>
       </header>
 
-      <div id="top" className="mx-auto grid max-w-7xl gap-12 px-5 py-14 lg:grid-cols-[220px_1fr] lg:px-8 lg:py-20">
-        <aside className="hidden lg:block">
-          <div className="sticky top-8 space-y-6 text-sm">
-            <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">On this page</p>
-              <div className="grid gap-2 border-l border-border pl-4 text-muted-foreground">
-                <a className="hover:text-foreground" href="#install">Install</a>
-                <a className="hover:text-foreground" href="#usage">Usage</a>
-                <a className="hover:text-foreground" href="#components">Components</a>
-              </div>
-            </div>
-            <p className="text-xs leading-5 text-muted-foreground">A shared foundation for Rockstar products.</p>
-          </div>
-        </aside>
+      <section className="border-b border-fd-border/70">
+        <div className="mx-auto flex max-w-4xl flex-col items-center px-4 pb-14 pt-20 text-center sm:px-6 sm:pt-24 sm:pb-16">
+          <Link href="/docs/components/toaster" className="inline-flex items-center gap-1.5 rounded-full border border-fd-border bg-fd-secondary/60 px-3 py-1 text-xs text-fd-muted-foreground transition-colors hover:text-fd-foreground"><Sparkles className="size-3.5 text-fd-primary" /> rockin 0.0.4 is out <ArrowRight className="size-3" /></Link>
+          <h1 className="mt-6 max-w-3xl text-5xl font-semibold tracking-[-0.06em] text-balance sm:text-6xl">The UI system behind <span className="text-fd-primary">Rock Star products.</span></h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-fd-muted-foreground sm:text-lg">Accessible components, expressive motion, and a shared visual language for every product we ship.</p>
+          <div className="mt-7 flex flex-col items-center gap-2.5 sm:flex-row"><CopyCommand command="bun add rockin" /><Link href="/docs/getting-started/installation" className="inline-flex h-10 items-center gap-2 rounded-md bg-fd-primary px-4 text-sm font-medium text-fd-primary-foreground transition-colors hover:bg-fd-primary/80">Get started <ArrowRight className="size-4" /></Link></div>
+          <p className="mt-4 text-xs text-fd-muted-foreground">React 19 · Tailwind CSS v4 · Base UI</p>
+        </div>
+      </section>
 
-        <article className="min-w-0 max-w-4xl">
-          <div className="mb-16 max-w-3xl">
-            <p className="mb-4 font-mono text-sm text-brand">rockin</p>
-            <h1 className="max-w-2xl text-4xl font-semibold tracking-[-0.04em] text-balance sm:text-6xl">Build once. Keep every Rockstar product familiar.</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">A practical React UI layer with accessible primitives, motion-ready components, icons, hooks, and shared theme styles.</p>
-          </div>
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><div className="flex items-center gap-2 text-xs font-medium text-fd-primary"><span className="size-1.5 rounded-full bg-fd-primary" /> Live previews</div><h2 className="mt-1.5 text-2xl font-semibold tracking-[-0.035em]">Components that ship.</h2><p className="mt-1.5 max-w-md text-sm leading-6 text-fd-muted-foreground">A small look at the primitives and patterns powering Rock Star products.</p></div><Link href="/docs/components/button" className="hidden items-center gap-1.5 rounded-md border border-fd-border px-3 py-2 text-sm text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground sm:inline-flex">View all components <ExternalLink className="size-3.5" /></Link></div>
+        <div className="rounded-2xl border border-fd-border bg-fd-card p-2.5 shadow-sm sm:p-3"><ShowcaseGrid limit={8} /></div>
+        <div className="mt-4 text-center sm:hidden"><Link href="/docs/components/button" className="inline-flex items-center gap-1 text-sm text-fd-muted-foreground">View all components <ExternalLink className="size-3.5" /></Link></div>
+      </section>
 
-          <section id="install" className="scroll-mt-8 border-t border-border/70 py-10">
-            <p className="mb-2 font-mono text-sm text-brand">01 / Install</p>
-            <h2 className="text-2xl font-semibold tracking-tight">Add the package</h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">Install the package once in any React or Next.js project.</p>
-            <pre className="code-block mt-6"><code>{install}</code></pre>
-          </section>
-
-          <section id="usage" className="scroll-mt-8 border-t border-border/70 py-10">
-            <p className="mb-2 font-mono text-sm text-brand">02 / Usage</p>
-            <h2 className="text-2xl font-semibold tracking-tight">Import what you need</h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground">UI components are available from the root. Icons, hooks, utilities, and styles use focused subpaths.</p>
-            <pre className="code-block mt-6"><code>{usage}</code></pre>
-          </section>
-
-          <section id="components" className="scroll-mt-8 border-t border-border/70 py-10">
-            <p className="mb-2 font-mono text-sm text-brand">03 / Components</p>
-            <h2 className="text-2xl font-semibold tracking-tight">Try the primitives</h2>
-            <p className="mt-3 mb-6 max-w-2xl text-muted-foreground">These examples are rendered from the same package that your applications install.</p>
-            <ComponentDemo />
-          </section>
-
-          <footer className="border-t border-border/70 py-8 text-sm text-muted-foreground">
-            <span>Rockstar UI · </span><a className="text-foreground underline underline-offset-4" href="https://github.com/rockstar-bio/ui">Source on GitHub</a>
-          </footer>
-        </article>
-      </div>
+      <footer className="border-t border-fd-border/70"><div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-xs text-fd-muted-foreground sm:flex-row sm:px-6"><Link href="/"><Logo compact /></Link><span>© 2026 Rock Star Bio · MIT licensed</span><div className="flex items-center gap-4"><Link className="hover:text-fd-foreground" href="/docs">Docs</Link><a className="inline-flex items-center gap-1 hover:text-fd-foreground" href="https://github.com/rockstar-bio/ui" target="_blank" rel="noreferrer"><GitHubIcon className="size-3.5" /> GitHub</a></div></div></footer>
     </main>
   )
 }
