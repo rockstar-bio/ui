@@ -7,10 +7,10 @@ type TopLoaderProps = {
   height?: string;
 };
 
-const TopLoader = ({
+export function TopLoader({
   children,
   height = '4px',
-}: TopLoaderProps) => {
+}: TopLoaderProps) {
   return (
     <ProgressProvider
       height={height}
@@ -21,6 +21,4 @@ const TopLoader = ({
       {children}
     </ProgressProvider>
   );
-};
- 
-export default TopLoader;
+}
