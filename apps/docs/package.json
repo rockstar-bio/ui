@@ -11,7 +11,7 @@
     "props": "bun scripts/generate-props.ts",
     "previews": "bun scripts/generate-preview-code.ts",
     "predev": "bun run previews",
-    "prebuild": "bun run props && bun run previews"
+    "prebuild": "test -f ../../packages/ui/dist/index.js || bun run --cwd ../../packages/ui build; bun run props && bun run previews"
   },
   "dependencies": {
     "flexsearch": "^0.8.212",
