@@ -1,9 +1,19 @@
+
 import { notFound } from "next/navigation"
-import { DocsPage, DocsBody, MarkdownCopyButton, ViewOptionsPopover } from "fumadocs-ui/layouts/glass/page"
+import {
+  DocsPage,
+  DocsBody,
+  MarkdownCopyButton,
+  ViewOptionsPopover,
+} from "fumadocs-ui/layouts/glass/page"
+import { ButtonGroup, ButtonGroupSeparator, buttonVariants } from "rockin/ui"
 import { getMDXComponents } from "@/mdx-components"
 import { getDocPage, source } from "@/lib/source"
+import { PageActions } from "./ui/actions"
 
-export default async function Page(props: { params: Promise<{ slug?: string[] }> }) {
+export default async function Page(props: {
+  params: Promise<{ slug?: string[] }>
+}) {
   const params = await props.params
   const page = getDocPage(params.slug)
   if (!page) notFound()
@@ -15,13 +25,15 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
-      <div className="not-prose mb-4 flex items-center justify-end gap-1.5">
-        <MarkdownCopyButton markdownUrl={markdownUrl} />
-        <ViewOptionsPopover markdownUrl={markdownUrl} githubUrl={githubUrl} />
-      </div>
       <DocsBody>
-        <h1 className="mb-2">{page.data.title}</h1>
-        <p className="mb-8 text-lg text-fd-muted-foreground">{page.data.description}</p>
+        <div className="flex items-center justify-between">
+          <h1 className="mb-0!">{page.data.title}</h1>
+        <PageActions  markdownUrl={markdownUrl} githubUrl={githubUrl} />
+        </div>
+
+        <p className="text-fd-muted-foreground text-lg">
+          {page.data.description}
+        </p>
         <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
@@ -32,7 +44,9 @@ export async function generateStaticParams() {
   return source.generateParams()
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug?: string[] }> }) {
+export async function generateMetadata(props: {
+  params: Promise<{ slug?: string[] }>
+}) {
   const params = await props.params
   const page = getDocPage(params.slug)
   if (!page) notFound()

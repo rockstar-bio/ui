@@ -26,6 +26,10 @@
       "types": "./dist/cn.d.ts",
       "import": "./dist/cn.js"
     },
+    "./loader": {
+      "types": "./dist/loader.d.ts",
+      "import": "./dist/loader.js"
+    },
     "./lucide": {
       "types": "./dist/lucide.d.ts",
       "import": "./dist/lucide.js"

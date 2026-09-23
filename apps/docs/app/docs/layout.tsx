@@ -1,11 +1,16 @@
 import type { ReactNode } from "react"
+import { GlassLayout } from "fumadocs-ui/layouts/glass"
 import { source } from "@/lib/source"
-import { GlassDocsLayout } from "@/components/glass-docs-layout"
+import { SidebarBrand } from "@/components/sidebar-brand"
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <GlassDocsLayout tree={source.pageTree}>
+    <GlassLayout
+      tree={source.pageTree}
+      nav={{ title: "rockin" }}
+      slots={{ navTitle: SidebarBrand }}
+    >
       {children}
-    </GlassDocsLayout>
+    </GlassLayout>
   )
 }

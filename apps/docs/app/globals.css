@@ -1,19 +1,6 @@
 @import "tailwindcss";
-@import "fumadocs-ui/css/preset.css";
-@import "fumadocs-ui/css/generated/glass.css";
+@import "fumadocs-ui/style.css";
 
-/* The custom glass header owns the sidebar controls on every breakpoint. */
-#nd-sidebar [aria-label="Hide Sidebar"],
-#nd-sidebar [aria-label="Show Sidebar"] {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  #fd-glass-layout > main {
-    padding-top: 7rem;
-    padding-bottom: 5rem;
-  }
-}
 @import "fumadocs-ui/css/shadcn.css";
 @import "../../../packages/ui/src/styles/globals.css";
 
@@ -38,11 +25,11 @@
 /* Font stacks for the docs site */
 :root {
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans", sans-serif;
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-    monospace;
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   --docs-wash: oklch(0.98 0.002 80);
   --docs-line: color-mix(in oklch, var(--foreground) 10%, transparent);
 }
@@ -58,21 +45,56 @@ html {
 /* Preview canvas used by ComponentPreview */
 .docs-preview {
   background-image:
-    linear-gradient(to right, color-mix(in oklch, var(--foreground) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 4%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 24px 24px;
 }
 
 .docs-grid {
   background-image:
-    linear-gradient(to right, color-mix(in oklch, var(--foreground) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 5%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 32px 32px;
+}
+
+/* Pages can opt into a consistent sidebar marker with `status: new` in frontmatter. */
+[data-status="new"] {
+  margin-inline-start: 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--brand) 14%, transparent);
+  padding: 0.125rem 0.375rem;
+  color: var(--brand);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 /* Fumadocs typography works inside our prose pages */
 .nd-page h1 {
   text-wrap: balance;
+}
+
+/* Keep the glass page header focused on the document title. */
+#fd-glass-layout [class*="grid-area:main"] > div:first-child:not(.prose) {
+  display: none;
 }
 
 /* hide key highlight for anchor links (fumadocs style) */

@@ -1,10 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { Palette, PenLine } from "lucide-react"
+import { PenLine, Paintbrush } from "lucide-react"
 import { useEffect, useState } from "react"
 
-import { Popover, PopoverContent, PopoverTrigger, Switch } from "rockin/ui"
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Switch,
+} from "rockin/ui"
 
 export interface AccentPreset {
   name: string
@@ -71,12 +77,14 @@ export function AccentPicker({
   className,
   triggerClassName,
   compact = false,
+  label = "Themes",
+  buttonSize,
 }: {
   className?: string
-  /** Extra classes for the trigger pill (e.g. to blend into a navbar). */
   triggerClassName?: string
-  /** Render a compact icon-only trigger for narrow navigation bars. */
   compact?: boolean
+  label?: string
+  buttonSize?: "default" | "icon" | "icon-title"
 }) {
   const [active, setActive] = useState<string | null>(null)
   const [vibrant, setVibrant] = useState(false)
@@ -92,29 +100,37 @@ export function AccentPicker({
     setActive(color ?? null)
   }
 
-  const activeColor = active ?? accentPresets[0].color
-  const activePreset = accentPresets.find((p) => p.color === active)
+  const triggerStyles =
+    className ??
+    triggerClassName ??
+    "rounded-lg border bg-muted px-2.5 py-1.5 hover:bg-muted/70"
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         render={
-          <button className={className ?? triggerClassName} aria-label="Themes" />
+          <Button
+            variant="ghost"
+            size={compact ? "icon" : (buttonSize ?? "default")}
+            className={triggerStyles}
+            aria-label={label}
+          />
         }
       >
         {compact ? (
-          <Palette className="size-4 text-muted-foreground" />
+          <Paintbrush className="size-4 text-muted-foreground" />
         ) : (
-          <span
-            className={`text-muted-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors ${
-              triggerClassName ?? "bg-muted hover:bg-muted/70 rounded-lg border px-2.5 py-1.5"
-            }`}
-          >
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors">
             <span
               className="size-3 rounded-full border border-border/50"
-              style={{ backgroundColor: vibrant && activePreset ? activePreset.vibrant : activeColor }}
+              style={{
+                backgroundColor:
+                  vibrant && active
+                    ? accentPresets.find((p) => p.color === active)?.vibrant
+                    : (active ?? accentPresets[0].color),
+              }}
             />
-            Themes
+            {label}
           </span>
         )}
       </PopoverTrigger>
@@ -122,8 +138,11 @@ export function AccentPicker({
         <div className="grid grid-cols-4 gap-x-2 gap-y-3">
           {accentPresets.map((preset, i) => {
             const isDefault = i === 0
-            const isActive = isDefault ? active === null : active === preset.color
-            const swatchColor = vibrant && !isDefault ? preset.vibrant : preset.color
+            const isActive = isDefault
+              ? active === null
+              : active === preset.color
+            const swatchColor =
+              vibrant && !isDefault ? preset.vibrant : preset.color
             return (
               <button
                 key={preset.name}
@@ -133,13 +152,17 @@ export function AccentPicker({
                 <span
                   aria-hidden
                   className={`size-11 rounded-full border border-border/40 transition-transform hover:scale-105 ${
-                    isActive ? "ring-2 ring-ring ring-offset-2 ring-offset-background" : ""
+                    isActive
+                      ? "ring-2 ring-ring ring-offset-2 ring-offset-background"
+                      : ""
                   }`}
                   style={{ backgroundColor: swatchColor }}
                 />
                 <span
                   className={`text-[11px] leading-none ${
-                    isActive ? "text-foreground font-medium" : "text-muted-foreground"
+                    isActive
+                      ? "font-medium text-foreground"
+                      : "text-muted-foreground"
                   }`}
                 >
                   {preset.name}
@@ -152,7 +175,9 @@ export function AccentPicker({
         <div className="mt-3 flex items-center justify-between gap-3 border-t pt-3">
           <div>
             <p className="text-sm font-medium">Vibrant palette</p>
-            <p className="text-muted-foreground text-xs">More saturated, less contrast</p>
+            <p className="text-xs text-muted-foreground">
+              More saturated, less contrast
+            </p>
           </div>
           <Switch
             size="sm"
@@ -168,7 +193,7 @@ export function AccentPicker({
         <Link
           href="/docs/getting-started/theming"
           onClick={() => setOpen(false)}
-          className="hover:bg-muted mt-3 flex w-full items-center justify-center gap-2 rounded-lg border py-2 text-sm font-medium transition-colors"
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
           <PenLine className="size-4" />
           Edit theme
