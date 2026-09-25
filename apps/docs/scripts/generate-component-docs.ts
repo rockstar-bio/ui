@@ -38,6 +38,8 @@ interface ComponentDocConfig {
   hidden?: boolean
   /** Group heading in the sidebar */
   group?: "Primitives" | "Forms" | "Overlays" | "Navigation & data" | "Chat" | "Motion & fun"
+  /** Show a New badge in the sidebar */
+  status?: "new" | "updated"
 }
 
 const DOCS: ComponentDocConfig[] = [
@@ -519,6 +521,67 @@ export function Example() {
     props: ["QuantityInput"],
     notes: "All Base UI NumberField root props pass through (`step`, `min`, `max`, `onValueChange`, …). The forwarded ref targets the inner input.",
     group: "Forms",
+  },
+  {
+    slug: "number-stepper",
+    title: "Number Stepper",
+    description: "Animated, keyboard-friendly quantity control with inline editing, bounds and press-and-hold acceleration.",
+    component: "NumberStepper",
+    sourcePath: "ui/numberstepper.tsx",
+    status: "new",
+    preview: "number-stepper",
+    usage: `import { NumberStepper } from "rockin/ui"
+
+export function Example() {
+  const [seats, setSeats] = useState(4)
+  return <NumberStepper label="Seats" value={seats} onChange={setSeats} min={1} max={12} />
+}`,
+    importCode: `import { NumberStepper, RollingNumber } from "rockin/ui"`,
+    props: ["NumberStepper", "RollingNumber"],
+    manualProps: [
+      { name: "size", type: '"xs" | "sm" | "default" | "lg"', default: '"default"', description: "Control height and spacing on the shared component size scale." },
+      { name: "min", type: "number", default: "0", description: "Smallest value accepted by the control." },
+      { name: "max", type: "number", default: "99", description: "Largest value accepted by the control." },
+      { name: "step", type: "number", default: "1", description: "Amount added or removed by each press and keyboard arrow." },
+    ],
+    examples: [
+      { name: "number-stepper-sizes", title: "Sizes", description: "Four sizes on the shared component scale: `xs`, `sm`, `default` and `lg`." },
+      { name: "number-stepper-customization", title: "Customization", description: "Combine a shared size, bounds, a custom step, and `className` to fit a product-specific control." },
+      { name: "number-stepper-format", title: "Formatted values", description: "Keep the numeric input accessible while presenting the result with your own unit or formatting." },
+    ],
+    notes: "The value is editable inline and responds to Arrow keys, Page Up/Down, Home and End. Holding either button repeats with acceleration; values are clamped to `min` and `max`. `RollingNumber` is exported separately when you need the animated value treatment in another control.",
+    group: "Forms",
+  },
+  {
+    slug: "top-loader",
+    title: "Top Loader",
+    description: "A thin progress bar for route transitions in Next.js App Router applications.",
+    component: "TopLoader",
+    sourcePath: "loader.tsx",
+    status: "new",
+    usage: `import { TopLoader } from "rockin"
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <TopLoader>{children}</TopLoader>
+}`,
+    importCode: `import { TopLoader } from "rockin"`,
+    manualProps: [
+      { name: "color", type: "string", default: '"var(--brand)"', description: "Progress bar color." },
+      { name: "height", type: "string", default: '"2px"', description: "Progress bar height." },
+      { name: "showSpinner", type: "boolean", default: "false", description: "Show the provider spinner." },
+      { name: "options", type: "Partial<BProgressOptions>", description: "Additional BProgress options." },
+      { name: "shallowRouting", type: "boolean", default: "false", description: "Include shallow route transitions." },
+      { name: "disableSameURL", type: "boolean", default: "false", description: "Skip progress for same-URL navigation." },
+      { name: "startPosition", type: "number", default: "0", description: "Initial progress position." },
+      { name: "delay", type: "number", default: "0", description: "Delay before displaying the bar, in milliseconds." },
+      { name: "stopDelay", type: "number", default: "0", description: "Delay before completing the bar, in milliseconds." },
+    ],
+    notes: "Wrap your application once, usually in `app/layout.tsx` or a client-side providers component. The loader starts automatically when the user navigates between routes and stops when the next route is ready. TopLoader is a client component.",
+    group: "Navigation & data",
   },
   {
     slug: "otp",
@@ -1264,6 +1327,7 @@ function toMdx(doc: ComponentDocConfig): string {
   lines.push(`description: ${JSON.stringify(doc.description)}`)
   lines.push(`component: ${doc.component}`)
   lines.push(`source: ${doc.sourcePath}`)
+  if (doc.status) lines.push(`status: ${doc.status}`)
   lines.push("---")
   lines.push("")
 

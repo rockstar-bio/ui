@@ -46105,6 +46105,121 @@
       "inherits": "PopoverPrimitive.Description.Props"
     }
   },
+  "numberstepper": {
+    "RollingNumber": {
+      "name": "RollingNumber",
+      "file": "ui/numberstepper.tsx",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "format",
+          "type": "((value: number) => string)",
+          "required": false,
+          "default": "String"
+        }
+      ],
+      "all": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "format",
+          "type": "((value: number) => string)",
+          "required": false
+        }
+      ],
+      "inherits": "{ value: number format?: (value: number) => string className?: string }"
+    },
+    "NumberStepper": {
+      "name": "NumberStepper",
+      "file": "ui/numberstepper.tsx",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "onChange",
+          "type": "(value: number) => void",
+          "required": true
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "required": false,
+          "default": "0"
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "required": false,
+          "default": "99"
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "required": false,
+          "default": "1"
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"xs\" | \"lg\"",
+          "required": false,
+          "default": "\"default\""
+        }
+      ],
+      "all": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "onChange",
+          "type": "(value: number) => void",
+          "required": true
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"default\" | \"sm\" | \"xs\" | \"lg\"",
+          "required": false
+        }
+      ],
+      "inherits": "{ label: string value: number onChange: (value: number) => void min?: number max?: number step?: number className?: stri"
+    }
+  },
   "input-otp": {
     "InputOTP": {
       "name": "InputOTP",

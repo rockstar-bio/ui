@@ -36,6 +36,7 @@
     "label",
     "message",
     "message-scroller",
+    "number-stepper",
     "otp",
     "popover",
     "quantity",
@@ -47,8 +48,8 @@
     "sortable",
     "switch",
     "textarea",
-    "top-loader",
     "toaster",
-    "tooltip"
+    "tooltip",
+    "top-loader"
   ]
 }

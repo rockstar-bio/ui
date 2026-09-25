@@ -18,17 +18,24 @@ function toKebab(name: string): string {
     .toLowerCase()
 }
 
-const map: Record<string, string> = []
+const map: Array<[string, string, string]> = []
 
 for (const file of fs.readdirSync(PREVIEWS_DIR).filter((f) => f.endsWith(".tsx")).sort()) {
   const source = fs.readFileSync(path.join(PREVIEWS_DIR, file), "utf8")
+  const support = source
+    .replace(/import[\s\S]*?from\s+["'][^"']+["']\s*/g, "")
+    .replace(/export\s+(?=function|const|let|var)/g, "")
   // Match top-level `export function XxxDemo() {` and capture until the closing
   // brace at column 0.
   const re = /^export function ([A-Za-z0-9]+Demo)(?:\([^)]*\))? \{[^]*?\n\}/gm
   let match: RegExpExecArray | null
   while ((match = re.exec(source))) {
     const [, name] = match
-    map.push([toKebab(name), source.slice(match.index, match.index + match[0].length)])
+    map.push([
+      toKebab(name),
+      source.slice(match.index, match.index + match[0].length),
+      support,
+    ])
   }
 }
 
@@ -37,6 +44,12 @@ const lines = [
   "export const previewCode: Record<string, string> = {",
   ...map.map(([key, code]) =>
     `  "${key}": ${JSON.stringify(code)},`
+  ),
+  "}",
+  "",
+  "export const previewSupportCode: Record<string, string> = {",
+  ...map.map(([key, , support]) =>
+    `  "${key}": ${JSON.stringify(support)},`
   ),
   "}",
   "",

@@ -1,5 +1,6 @@
 import { loader } from "fumadocs-core/source"
 import { statusBadgesPlugin } from "fumadocs-core/source/status-badges"
+import { createElement } from "react"
 import type { InferPageType } from "fumadocs-core/source"
 import type { DocData } from "fumadocs-mdx/runtime/types"
 import { toFumadocsSource } from "fumadocs-mdx/runtime/server"
@@ -7,7 +8,16 @@ import { docs, meta } from "@/.source/server"
 
 export const source = loader({
   baseUrl: "/docs",
-  plugins: [statusBadgesPlugin()],
+  plugins: [
+    statusBadgesPlugin({
+      renderBadge: (status) =>
+        createElement(
+          "span",
+          { "data-status": status },
+          status === "new" ? "New" : status === "updated" ? "Updated" : status
+        ),
+    }),
+  ],
   source: toFumadocsSource(docs, meta),
 })
 

@@ -3,7 +3,7 @@
 import { Check } from "lucide-react"
 import { useState } from "react"
 
-import { Checkbox, Kbd, KbdGroup, Label, RadioGroup, RadioGroupItem, Switch } from "rockin/ui"
+import { Checkbox, Kbd, KbdGroup, Label, NumberStepper, RadioGroup, RadioGroupItem, Switch } from "rockin/ui"
 
 export function KbdDemo() {
   return (
@@ -36,6 +36,69 @@ export function SwitchSizesDemo() {
     <div className="flex items-center gap-4">
       <Switch size="sm" checked={on} onCheckedChange={setOn} aria-label="Small switch" />
       <Switch checked={on} onCheckedChange={setOn} aria-label="Default switch" />
+    </div>
+  )
+}
+
+export function NumberStepperDemo() {
+  const [seats, setSeats] = useState(4)
+
+  return (
+    <div className="flex items-center gap-3">
+      <NumberStepper label="Seats" value={seats} onChange={setSeats} min={1} max={12} />
+      <span className="text-sm text-muted-foreground">{seats} seats</span>
+    </div>
+  )
+}
+
+export function NumberStepperSizesDemo() {
+  const [values, setValues] = useState({ xs: 1, sm: 2, default: 3, lg: 4 })
+  const sizes = ["xs", "sm", "default", "lg"] as const
+
+  return (
+    <div className="flex flex-wrap items-end justify-center gap-4">
+      {sizes.map((size) => (
+        <div key={size} className="flex flex-col items-center gap-2">
+          <NumberStepper
+            label={`${size} quantity`}
+            value={values[size]}
+            onChange={(value) => setValues((current) => ({ ...current, [size]: value }))}
+            size={size}
+          />
+          <span className="text-xs text-muted-foreground">{size}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function NumberStepperCustomizationDemo() {
+  const [guests, setGuests] = useState(10)
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <NumberStepper
+        label="Guests"
+        value={guests}
+        onChange={setGuests}
+        min={2}
+        max={20}
+        step={2}
+        size="sm"
+        className="border-brand/30 bg-brand/5 shadow-none"
+      />
+      <p className="text-xs text-muted-foreground">2–20 guests · changes by 2</p>
+    </div>
+  )
+}
+
+export function NumberStepperFormatDemo() {
+  const [amount, setAmount] = useState(1250)
+
+  return (
+    <div className="flex items-center gap-3">
+      <NumberStepper label="Amount" value={amount} onChange={setAmount} min={0} max={9999} step={250} />
+      <span className="text-sm font-medium tabular-nums">{amount.toLocaleString()} credits</span>
     </div>
   )
 }
